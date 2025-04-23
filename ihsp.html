@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lessons</title>
+  <link rel="icon" type="image/x-icon" href="Algebra Logo.ico"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 50;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      padding-top: 10px;
+    }
+
+    /* 🌌 Star Background Layers */
+    .stars-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://codehs.com/uploads/dcf4862edf0070b099a507424ae45d92') repeat;
+      background-size: 768px 768px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .stars-layer.one {
+      animation: scrollTileSlow 30s linear infinite;
+      opacity: 0.4;
+    }
+
+    .stars-layer.two {
+      animation: scrollTileFast 15s linear infinite;
+      opacity: 0.2;
+    }
+
+    .stars-layer.twinkle {
+      opacity: 0.15;
+      animation: twinkle 2s ease-in-out infinite alternate;
+      background-size: 768px 768px;
+    }
+
+    @keyframes scrollTileSlow {
+      0% { background-position: 0 0; }
+      100% { background-position: 768px 768px; }
+    }
+
+    @keyframes scrollTileFast {
+      0% { background-position: 0 0; }
+      100% { background-position: 1536px 1536px; }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.1; }
+      100% { opacity: 0.25; }
+    }
+
+    .logo {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .logo img {
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 20px #00ccff);
+    }
+
+    .button-container {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+      max-width: calc((100px + 20px) * 7);
+    }
+
+    .button-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .button img {
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .button-wrapper:hover .overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌠 Star Background Layers -->
+<div class="stars-layer one"></div>
+<div class="stars-layer two"></div>
+<div class="stars-layer twinkle"></div>
+
+<!-- 🖼 Logo Section -->
+<div class="logo">
+  <img src="https://codehs.com/uploads/377888f56b1690a83441878546c93bdd" alt="Interstellar math" />
+</div>
+
+<script>
+  function openGame(url) {
+    var win = window.open();
+    if (!win) {
+      alert("Pop-up blocked. Please allow pop-ups for this site.");
+      return;
+    }
+    win.document.body.style.margin = "0";
+    win.document.body.style.backgroundColor = "black";
+    var iframe = win.document.createElement('iframe');
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    iframe.src = url;
+    win.document.body.appendChild(iframe);
+  }
+</script>
+
+<!-- 🎮 Game Buttons -->
+<div class="button-container">
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Request.html')">
+      <img src="request.png" alt="Request a Game"/>
+      <div class="overlay">Request A Game</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('escaperoad.html')">
+      <img src="https://codehs.com/uploads/48e270ecf8c640a66bfb4edc61daf406" alt="Escape Road"/>
+      <div class="overlay">Escape Road</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('1v1.html')">
+      <img src="https://jiftya.github.io/AlgebraResources/1v1.lol.png" alt="1v1.lol Game"/>
+      <div class="overlay">1v1.lol</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Blueedge.html')">
+      <img src="https://codehs.com/uploads/4a114a4f4f62281b0b02c712c63a5824" alt="Blueedge"/>
+      <div class="overlay">Blue Edge</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('ShellShockers.html')">
+      <img src="https://codehs.com/uploads/46c78711e099d21fb0ee1634b395fa5b" alt="Shell Shockers"/>
+      <div class="overlay">Shell Shockers</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Smashkarts.html')">
+      <img src="https://codehs.com/uploads/673fad03c96567f6db1d95ebc4e4e784" alt="Smash Karts"/>
+      <div class="overlay">Smashkarts</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('deeeep.io.html')">
+      <img src="deepio.jpg" alt="Deep.io"/>
+      <div class="overlay">Deep.io</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('EscapeRoad2.html')">
+      <img src="https://codehs.com/uploads/f9dc58775c7292ae11d8f78a81aa6e7a" alt="Escape Road 2"/>
+      <div class="overlay">Escape Road 2</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('SubwaySurfers.html')">
+      <img src="subwaysurfers.png" alt="Subway Surfers"/>
+      <div class="overlay">Subway Surfers</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('ducklife.html')">
+      <img src="Ducklife.png" alt="Ducklife"/>
+      <div class="overlay">Duck Life</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Learntofly.html')">
+      <img src="learn-to-fly.png" alt="Learn to fly"/>
+      <div class="overlay">Learn To Fly</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('learn2fly.html')">
+      <img src="learn2fly.png" alt="Learn 2 fly"/>
+      <div class="overlay">Learn 2 Fly</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('retrobowl.html')">
+      <img src="retrobowl.png" alt="retrobowl"/>
+      <div class="overlay">Retrobowl</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Deathbyai.html')">
+      <img src="https://codehs.com/uploads/7da1a93c67f80531a3402e9dfbece3af" alt="cluster rush"/>
+      <div class="overlay">Death By AI</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('monkeymart.html')">
+      <img src="monkeymart.png" alt="Monkey Mart"/>
+      <div class="overlay">Monkey Mart</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Infinitecraft.html')">
+      <img src="infinitecraft.png" alt="infinite craft"/>
+      <div class="overlay">Infinite Craft</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('Resizer.html')">
+      <img src="resizer.png" alt="resizer"/>
+      <div class="overlay">Resizer</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('forknsausage.html')">
+      <img src="forknsausage.png" alt="resizer"/>
+      <div class="overlay">Fork 'N Sausage</div>
+    </button>
+  </div>
+  <div class="button-wrapper">
+    <button class="button" onclick="openGame('eaglercraft.html')">
+      <img src="eaglercraft.png" alt="resizer"/>
+      <div class="overlay">Eaglercraft</div>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

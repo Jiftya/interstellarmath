@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interstellar Math Launcher</title>
+
+  <!-- 🌌 Open Graph Meta Tags -->
+  <meta property="og:title" content="Interstellar Math Launcher" />
+  <meta property="og:description" content="Launch The Interstellar Math Engine To Play Your Favorite Games!" />
+  <meta property="og:image" content="https://codehs.com/uploads/377888f56b1690a83441878546c93bdd" />
+  <meta property="og:url" content="https://interstellarmath.codehs.me/" />
+  <meta property="og:type" content="website" />
+
+  <!-- 🐦 Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Interstellar Math Launcher" />
+  <meta name="twitter:description" content="Launch The Interstellar Math Engine To Play Your Favorite Games!" />
+  <meta name="twitter:image" content="https://codehs.com/uploads/377888f56b1690a83441878546c93bdd" />
+
+  <style>
+    /* ⭐ Star Background */
+    .stars-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: url('Stars.jpg') repeat;
+      background-size: 800px 800px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .stars-layer.one {
+      animation: starsDiagonalSlow 24s linear infinite;
+    }
+
+    .stars-layer.two {
+      animation: starsDiagonalFast 12s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes starsDiagonalSlow {
+      from { background-position: 0 0; }
+      to { background-position: 50% 50%; }
+    }
+
+    @keyframes starsDiagonalFast {
+      from { background-position: 0 0; }
+      to { background-position: 100% 100%; }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
+    }
+
+    button:active {
+      transform: scale(1);
+    }
+  </style>
+
+  <script>
+    function openGameAndMaybeCloseSelf() {
+      const gameWindow = window.open('', '_blank');
+      const gameUrl = 'ihsp.html';
+
+      if (!gameWindow) {
+        alert("Popup blocked! Please allow popups for this site.");
+        return;
+      }
+
+      // Set up the new window
+      gameWindow.document.body.style.margin = "0";
+      gameWindow.document.body.style.padding = "0";
+      gameWindow.document.body.style.overflow = "hidden";
+      gameWindow.document.body.style.backgroundColor = "black";
+
+      const iframe = gameWindow.document.createElement('iframe');
+      iframe.src = gameUrl;
+      iframe.style.width = "100vw";
+      iframe.style.height = "100vh";
+      iframe.style.border = "none";
+
+      gameWindow.document.body.appendChild(iframe);
+
+      // Attempt to close only if this page was opened via script
+      try {
+        if (window.opener || window !== window.parent) {
+          window.close();
+        }
+      } catch (e) {
+        console.warn("Unable to close window:", e);
+      }
+    }
+
+    window.onload = function () {
+      openGameAndMaybeCloseSelf();
+    };
+  </script>
+</head>
+
+<body>
+  <!-- ⭐ Star Background Layers -->
+  <div class="stars-layer one"></div>
+  <div class="stars-layer two"></div>
+
+  <h1>Launching Interstellar Math...</h1>
+  <p>If it doesn't launch automatically, click the button below and allow popups.</p>
+  <button onclick="openGameAndMaybeCloseSelf()">Click here to launch</button>
+</body>
+</html>

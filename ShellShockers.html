@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shell Shockers</title>
+  <link rel="icon" type="image/x-icon" href="Algebra Logo.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: black;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* ✨ Scrolling Star Background */
+    .stars-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: url('Stars.jpg') repeat;
+      background-size: 800px; /* ⭐ Bigger stars */
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .stars-layer.one {
+      animation: starsDiagonalSlow 24s linear infinite;
+    }
+
+    .stars-layer.two {
+      animation: starsDiagonalFast 12s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes starsDiagonalSlow {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 50% 50%;
+      }
+    }
+
+    @keyframes starsDiagonalFast {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+    /* 🌌 Game Container with Glow */
+    .game-container {
+      position: relative;
+      width: 80vw;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      border: 3px solid white;
+      border-radius: 10px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.2); /* TV-style glow */
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+    }
+
+    .fullscreen-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+
+    .fullscreen-btn:hover {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✨ Star Background Layers -->
+  <div class="stars-layer one"></div>
+  <div class="stars-layer two"></div>
+
+  <!-- 🎮 Game Embed Container -->
+  <div class="game-container">
+    <iframe id="gameFrame" src="https://shellshock.io/" allow="autoplay; fullscreen"></iframe>
+    <img src="https://jiftya.github.io/AlgebraResources/Fullscreen%20Button.png" id="fullscreenBtn" class="fullscreen-btn" alt="Fullscreen">
+  </div>
+
+  <script>
+    const gameFrame = document.getElementById("gameFrame");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+    // Automatically refocus the iframe every millisecond
+    setInterval(() => {
+      gameFrame.focus();
+    }, 1);
+
+    // Handle Fullscreen
+    fullscreenBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent triggering game clicks
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        if (gameFrame.requestFullscreen) {
+          gameFrame.requestFullscreen();
+        } else if (gameFrame.webkitRequestFullscreen) {
+          gameFrame.webkitRequestFullscreen();
+        } else if (gameFrame.mozRequestFullScreen) {
+          gameFrame.mozRequestFullScreen();
+        } else if (gameFrame.msRequestFullscreen) {
+          gameFrame.msRequestFullscreen();
+        }
+      }
+    });
+
+    // Hide/show fullscreen button based on fullscreen state
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add("hidden");
+      } else {
+        fullscreenBtn.classList.remove("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>

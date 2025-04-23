@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Duck Life</title>
+  <link rel="icon" type="image/x-icon" href="Algebra Logo.ico">
+  <script src="https://xxsibxx.github.io/ruffleembedsetup112/ruffle/ruffle.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: none;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 🌌 Animated Star Background Layers (now fullscreen!) */
+    .stars-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('Stars.jpg') repeat;
+      background-size: 800px;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .stars-layer.one {
+      animation: starsDiagonalSlow 24s linear infinite;
+      opacity: 1; /* back layer fully visible */
+    }
+
+    .stars-layer.two {
+      animation: starsDiagonalFast 12s linear infinite;
+      opacity: 0.2; /* front layer remains subtle */
+    }
+
+    @keyframes starsDiagonalSlow {
+      from { background-position: 0 0; }
+      to { background-position: 50% 50%; }
+    }
+
+    @keyframes starsDiagonalFast {
+      from { background-position: 0 0; }
+      to { background-position: 100% 100%; }
+    }
+
+    /* 🎮 Game Container with Aspect Ratio */
+    .game-wrapper {
+      position: relative;
+      width: 80vw;
+      max-width: 960px;
+      aspect-ratio: 620 / 480;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid white;
+      border-radius: 10px;
+      background: black;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+    }
+
+    #flash-game {
+      width: 100%;
+      height: 100%;
+    }
+
+    ruffle-player {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .fullscreen-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    .fullscreen-btn:hover {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✨ Star Background Layers -->
+  <div class="stars-layer one"></div>
+  <div class="stars-layer two"></div>
+
+  <!-- 🎮 Game Frame Container -->
+  <div class="game-wrapper" id="gameContainer">
+    <div id="flash-game"></div>
+    <img src="https://jiftya.github.io/AlgebraResources/Fullscreen%20Button.png"
+         id="fullscreenBtn"
+         class="fullscreen-btn"
+         alt="Fullscreen" aria-label="Toggle Fullscreen">
+  </div>
+
+  <script>
+    const gameContainer = document.getElementById("gameContainer");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+    // Load Ruffle Player
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.addEventListener("load", () => {
+      const ruffle = window.RufflePlayer.newest();
+      const player = ruffle.createPlayer();
+      document.getElementById("flash-game").appendChild(player);
+      player.load("https://jiftya.github.io/h89ug8ug/duck-life.swf");
+    });
+
+    // Fullscreen Toggle
+    fullscreenBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        if (gameContainer.requestFullscreen) {
+          gameContainer.requestFullscreen();
+        } else if (gameContainer.webkitRequestFullscreen) {
+          gameContainer.webkitRequestFullscreen();
+        } else if (gameContainer.mozRequestFullScreen) {
+          gameContainer.mozRequestFullScreen();
+        } else if (gameContainer.msRequestFullscreen) {
+          gameContainer.msRequestFullscreen();
+        }
+      }
+    });
+
+    // Hide fullscreen button when active
+    document.addEventListener("fullscreenchange", () => {
+      fullscreenBtn.classList.toggle("hidden", !!document.fullscreenElement);
+    });
+  </script>
+
+</body>
+</html>
